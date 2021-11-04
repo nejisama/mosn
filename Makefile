@@ -108,13 +108,23 @@ image:
 istio-1.5.2:
 	@echo 1.5.2 > ISTIO_VERSION
 	@cp istio/istio152/main/* ./cmd/mosn/main/
-	@go mod edit -replace github.com/envoyproxy/go-control-plane=github.com/envoyproxy/go-control-plane v0.9.4
+	@go mod edit -replace github.com/envoyproxy/go-control-plane=github.com/envoyproxy/go-control-plane@v0.9.4
 	@go mod tidy
 	@go mod vendor
 
 # istio test
 unit-test-istio-1.5.2:
 	GO111MODULE=off go test -gcflags=-l -v `go list ./istio/istio152/...`	
+
+istio-1.10.0:
+	@echo 1.10.0 > ISTIO_VERSION
+	@cp istio/istio1100/main/* ./cmd/mosn/main/
+	@go mod edit -replace github.com/envoyproxy/go-control-plane=github.com/envoyproxy/go-control-plane@v0.10.0
+	@go mod tidy
+	@go mod vendor
+
+unit-test-istio-1.10.0:
+	GO111MODULE=off go test -gcflags=-l -v `go list ./istio/istio1100/...`
 
 
 .PHONY: unit-test build image rpm upload shell
