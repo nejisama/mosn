@@ -166,7 +166,6 @@ github.com/envoyproxy/go-control-plane/envoy/type/metadata/v3
 github.com/envoyproxy/go-control-plane/envoy/type/tracing/v2
 github.com/envoyproxy/go-control-plane/envoy/type/tracing/v3
 github.com/envoyproxy/go-control-plane/envoy/type/v3
-github.com/envoyproxy/go-control-plane/pkg/conversion
 github.com/envoyproxy/go-control-plane/pkg/resource/v3
 github.com/envoyproxy/go-control-plane/pkg/wellknown
 # github.com/envoyproxy/protoc-gen-validate v0.1.0

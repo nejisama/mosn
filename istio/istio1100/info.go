@@ -72,13 +72,15 @@ func InitXdsInfo(config *v2.MOSNConfig, serviceCluster, serviceNode string, serv
 	if len(serviceMeta) > 0 || len(labels) > 0 {
 		metadata := &_struct.Struct{}
 		// TODO: get pod labels?
-		defaultMeta.Labels = make(map[string]string, len(labels))
-		for _, keyValue := range labels {
-			keyValueSep := strings.SplitN(keyValue, serviceMetaSeparator, 2)
-			if len(keyValueSep) != 2 {
-				continue
+		if len(labels) > 0 {
+			defaultMeta.Labels = make(map[string]string, len(labels))
+			for _, keyValue := range labels {
+				keyValueSep := strings.SplitN(keyValue, serviceMetaSeparator, 2)
+				if len(keyValueSep) != 2 {
+					continue
+				}
+				defaultMeta.Labels[keyValueSep[0]] = keyValueSep[1]
 			}
-			defaultMeta.Labels[keyValueSep[0]] = keyValueSep[1]
 		}
 		for k, v := range istio.GetPodLabels() {
 			defaultMeta.Labels[k] = v

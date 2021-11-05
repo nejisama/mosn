@@ -107,6 +107,7 @@ image:
 # change istio version support
 istio-1.5.2:
 	@echo 1.5.2 > ISTIO_VERSION
+	@bash istio_ctrl.sh istio152
 	@cp istio/istio152/main/* ./cmd/mosn/main/
 	@go mod edit -replace github.com/envoyproxy/go-control-plane=github.com/envoyproxy/go-control-plane@v0.9.4
 	@go mod tidy
@@ -118,6 +119,7 @@ unit-test-istio-1.5.2:
 
 istio-1.10.0:
 	@echo 1.10.0 > ISTIO_VERSION
+	@bash istio_ctrl.sh istio1100
 	@cp istio/istio1100/main/* ./cmd/mosn/main/
 	@go mod edit -replace github.com/envoyproxy/go-control-plane=github.com/envoyproxy/go-control-plane@v0.10.0
 	@go mod tidy
@@ -126,5 +128,6 @@ istio-1.10.0:
 unit-test-istio-1.10.0:
 	GO111MODULE=off go test -gcflags=-l -v `go list ./istio/istio1100/...`
 
+	
 
 .PHONY: unit-test build image rpm upload shell
